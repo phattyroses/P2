@@ -53,16 +53,6 @@ bio.display = function(){
 
 	}
 }
-	/*var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-	$("#header").append(formattedMobile);
-	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-	$("#header").append(formattedEmail);
-
-}
-
-bio.display();*/
-
-
 
 }
 
@@ -80,7 +70,7 @@ var work = {
 		{
 			"employer": "United States Navy",
 			"title": "Musician",
-			"location": "Seattle, WA/Jacksonville, FL",
+			"location": "Seattle, WA",
 			"dates": "2010-Present",
 			"description": "Perform music in a large variety of styles"
 		},
@@ -263,4 +253,20 @@ education.display = function(){
 education.display();
 
 $("#mapDiv").append(googleMap);
+
+
+var contactKeys_bottom = Object.keys(bio.contacts);
+var contactsCounter_bottom = 0;
+
+	for (var i in bio.contacts){
+
+		var key = contactKeys_bottom[i];
+
+		var formattedContact = HTMLcontactGeneric.replace("%data%", bio.contacts[i]).replace("%contact%", contactKeys_bottom[contactsCounter_bottom]);
+		contactsCounter_bottom += 1;
+
+		$("#footerContacts").append(formattedContact);
+
+	}
+
 
