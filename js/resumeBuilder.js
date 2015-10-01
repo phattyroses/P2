@@ -1,34 +1,31 @@
-
+'use strict';
 var bio = {
 	"name": "Richard Hanks",
 	"role": "Web Developer",
-	"contacts":{
-		 "mobile": "413-658-7041",
-		 "email": "richardhanksjr@gmail.com",
-		 "github": "phattyroses",
-		 "location": "Jacksonville, FL"
-		},
-	"picture_URL" : "images/IMG_1653.jpg",
+	"contacts": {
+		"mobile": "413-658-7041",
+		"email": "richardhanksjr@gmail.com",
+		"github": "phattyroses",
+		"location": "Jacksonville, FL"
+	},
+	"picture_URL": "images/IMG_1653.jpg",
 	"welcome_message": "Welcome To My Resume!",
 	"skills": ["Python", " Front-end Development", " Musician", " Educator", " CDL Driver"]
 
 }
 
 
-bio.display = function(){
+bio.display = function() {
 
 
-		var contactKeys = Object.keys(bio.contacts);
-		var contactsCounter = 0;
+	//var contactKeys = Object.keys(bio.contacts);
+	//var contactsCounter = 0;
 
-	for (var i in bio.contacts){
+	for (var i in bio.contacts) {
 
-		var key = contactKeys[i];
-
-		var formattedContact = HTMLcontactGeneric.replace("%data%", bio.contacts[i]).replace("%contact%", contactKeys[contactsCounter]);
-		contactsCounter += 1;
-
+		var formattedContact = HTMLcontactGeneric.replace('%data%', bio.contacts[i]).replace('%contact%', bio.contacts[i]);
 		$("#topContacts").append(formattedContact);
+		$("#footerContacts").append(formattedContact);
 
 	}
 	//$("#header").append(HTMLpicStart);
@@ -36,23 +33,23 @@ bio.display = function(){
 	$("#header").append(formattedBioPic);
 	var formattedWelcome = HTMLWelcomeMsg.replace("%data%", bio.welcome_message);
 	$("#header").append(formattedWelcome);
-	if (bio.skills){
-	$("#header").append(HTMLskillsStart);
-	for (i in bio.skills){
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-		$("#skillsH3").append(formattedSkill);
+	if (bio.skills) {
+		$("#header").append(HTMLskillsStart);
+		for (i in bio.skills) {
+			var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+			$("#skillsH3").append(formattedSkill);
+		}
+		if (bio.name && bio.role) {
+			var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+			$("#header").prepend(formattedRole);
+			var formattedName = HTMLheaderName.replace("%data%", bio.name);
+			$("#header").prepend(formattedName)
+
+
+
+
+		}
 	}
-	if (bio.name && bio.role){
-		var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-		$("#header").prepend(formattedRole);
-		var formattedName = HTMLheaderName.replace("%data%", bio.name);
-		$("#header").prepend(formattedName)
-
-
-
-
-	}
-}
 
 }
 
@@ -62,12 +59,9 @@ bio.display();
 
 
 
-
-
 var work = {
 
-	"jobs":[
-		{
+	"jobs": [{
 			"employer": "United States Navy",
 			"title": "Musician",
 			"location": "Seattle, WA",
@@ -95,19 +89,20 @@ var work = {
 	]
 }
 
-work.display= function() {
-for (jobs in work.jobs){
-	$("#workExperience").append(HTMLworkStart);
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[jobs].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[jobs].title);
-	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[jobs].location);
-	var formatedDates = HTMLworkDates.replace("%data%", work.jobs[jobs].dates);
-	var formatedDescription = HTMLworkDescription.replace("%data%", work.jobs[jobs].description);
-	var formatedEmployerTitle = formattedEmployer + formattedTitle + formattedLocation + formatedDates +
-									formatedDescription;
-	$(".work-entry:last").append(formatedEmployerTitle);
+work.display = function() {
+	for (var i=0; i<work.jobs.length; i++) {
 
-}
+		$("#workExperience").append(HTMLworkStart);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+		var formatedDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+		var formatedDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+		var formatedEmployerTitle = formattedEmployer + formattedTitle + formattedLocation + formatedDates +
+			formatedDescription;
+		$(".work-entry:last").append(formatedEmployerTitle);
+
+	}
 }
 work.display();
 
@@ -127,33 +122,29 @@ inName();*/
 
 var projects = {
 
-	"projects": [
-		{
-			"title": "Metronome/Drone",
-			"dates": "2015",
-			"description": "A program for practicing muscians based on research.",
-			"images": ["images/met_2.png"]
+	"projects": [{
+		"title": "Metronome/Drone",
+		"dates": "2015",
+		"description": "A program for practicing muscians based on research.",
+		"images": ["images/met_2.png"]
 
-		},
-		{
-			"title": "Navy MU Rating Exam Practice",
-			"dates": "2005",
-			"description": "A program for randomly generating study questions for the Navy Musicians' rating exam.",
-			"images": ["images/MU_Badge.png"]
-		},
-		{
-			"title": "Planetary Ring Tone",
-			"dates": "2005",
-			"description": "A program that uses the orbital speeds of planets to algorhithmically create an interesting musical composition.",
-			"images": ["images/phone_music.png"]
-		}
-	]
+	}, {
+		"title": "Navy MU Rating Exam Practice",
+		"dates": "2005",
+		"description": "A program for randomly generating study questions for the Navy Musicians' rating exam.",
+		"images": ["images/MU_Badge.png"]
+	}, {
+		"title": "Planetary Ring Tone",
+		"dates": "2005",
+		"description": "A program that uses the orbital speeds of planets to algorhithmically create an interesting musical composition.",
+		"images": ["images/phone_music.png"]
+	}]
 }
 
 
-projects.display = function(){
+projects.display = function() {
 
-	for (i in projects.projects){
+	for (var i in projects.projects) {
 
 		$("#projects").append(HTMLprojectStart);
 		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[i].title);
@@ -171,55 +162,47 @@ projects.display = function(){
 
 projects.display();
 var education = {
-    "schools": [
-        {
-            "name": "Umass",
-            "location": "Amherst, MA",
-            "degree": ["Master of Music"],
-            "date": "2009",
-            "major": "Music"
-        },
-        {
-            "name": "Umass",
-            "location": "Amherst, MA",
-            "degree": ["BA Music"],
-            "date": "2007",
-            "url": "www.umass.edu",
-            "major": "Music"
-        }
-    ],
-    "onlineCourses": [
-        {
-        	"title": "Intro to HTML and CSS",
-        	"school": "Udacity",
-        	"date": "2015",
-        	"url": "www.udacity.com"
-        },
-        {
-        	"title": "Responsive Web Design Fundamentals",
-        	"school": "Udacity",
-        	"date": "2015",
-        	"url": "www.udacity.com"
+	"schools": [{
+		"name": "Umass",
+		"location": "Amherst, MA",
+		"degree": ["Master of Music"],
+		"date": "2009",
+		"major": "Music"
+	}, {
+		"name": "Umass",
+		"location": "Amherst, MA",
+		"degree": ["BA Music"],
+		"date": "2007",
+		"url": "www.umass.edu",
+		"major": "Music"
+	}],
+	"onlineCourses": [{
+		"title": "Intro to HTML and CSS",
+		"school": "Udacity",
+		"date": "2015",
+		"url": "www.udacity.com"
+	}, {
+		"title": "Responsive Web Design Fundamentals",
+		"school": "Udacity",
+		"date": "2015",
+		"url": "www.udacity.com"
 
-        },
-        {
-        	"title": "Responsive Images",
-        	"school": "Udacity",
-        	"date": "2015",
-        	"url": "www.udacity.com"
-        },
-        {
-        	"title": "JavaScript Basics",
-        	"school": "Udacity",
-        	"date": "2015",
-        	"url": "www.udacity.com"
-        }
-    ]
+	}, {
+		"title": "Responsive Images",
+		"school": "Udacity",
+		"date": "2015",
+		"url": "www.udacity.com"
+	}, {
+		"title": "JavaScript Basics",
+		"school": "Udacity",
+		"date": "2015",
+		"url": "www.udacity.com"
+	}]
 }
 
-education.display = function(){
+education.display = function() {
 
-	for (i in education.schools){
+	for (var i in education.schools) {
 		$("#education").append(HTMLschoolStart);
 		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
 		var formattredSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
@@ -234,7 +217,7 @@ education.display = function(){
 
 	}
 	$(".education-entry:last").append(HTMLonlineClasses);
-	for (i in education.onlineCourses){
+	for (i in education.onlineCourses) {
 
 		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title);
 		var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);
@@ -253,20 +236,3 @@ education.display = function(){
 education.display();
 
 $("#mapDiv").append(googleMap);
-
-
-var contactKeys_bottom = Object.keys(bio.contacts);
-var contactsCounter_bottom = 0;
-
-	for (var i in bio.contacts){
-
-		var key = contactKeys_bottom[i];
-
-		var formattedContact = HTMLcontactGeneric.replace("%data%", bio.contacts[i]).replace("%contact%", contactKeys_bottom[contactsCounter_bottom]);
-		contactsCounter_bottom += 1;
-
-		$("#footerContacts").append(formattedContact);
-
-	}
-
-
